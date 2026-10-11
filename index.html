@@ -6,216 +6,490 @@
     <title>Tane Restaurant Menu</title>
     <style>
         body {
-            background-color: #121212;
-            color: #ffffff;
+            background-color: #0d0d0d;
+            color: #f5f5f5;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
-        .container {
-            max-width: 600px;
+        .lang-container {
+            margin-bottom: 25px;
+        }
+        .lang-selector {
+            background: #1a1a1a;
+            border: 1px solid #c5a059;
+            color: #d4af37;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .lang-selector:hover {
+            background: #c5a059;
+            color: #000;
+        }
+        .menu-container {
+            max-width: 650px;
             width: 100%;
-            border: 2px dashed #444;
-            padding: 20px;
+            border: 2px solid #c5a059;
+            background: #121212;
+            padding: 30px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
         }
         .header {
             text-align: center;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
         .header h1 {
             margin: 0;
-            font-size: 32px;
-            letter-spacing: 2px;
+            font-family: 'Georgia', serif;
+            font-size: 38px;
+            color: #d4af37;
+            letter-spacing: 3px;
         }
         .header p {
             margin: 5px 0 0;
-            color: #aaa;
-            font-size: 14px;
+            color: #888;
+            font-size: 13px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
         }
-        h2 {
+        .section-title {
             text-align: center;
-            font-size: 18px;
-            letter-spacing: 1.5px;
-            color: #e0e0e0;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: #d4af37;
+            margin: 40px 0 25px;
             border-bottom: 1px dashed #444;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
+            text-transform: uppercase;
         }
-        .item {
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #1f1f1f;
+            padding-bottom: 20px;
+        }
+        .item-image {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c5a059;
+            margin-right: 18px;
+            flex-shrink: 0;
+            background-color: #222;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 15px;
+            align-items: baseline;
         }
         .item-name {
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
         }
-        .item-sub {
-            font-size: 12px;
-            color: #888;
-        }
-        .price {
+        .item-price {
+            font-size: 16px;
             font-weight: bold;
+            color: #d4af37;
             white-space: nowrap;
+            margin-left: 10px;
         }
-        .logo-symbol {
+        .item-desc {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 4px;
+        }
+        .footer-logo {
             text-align: center;
-            margin-top: 30px;
-            font-size: 24px;
+            margin-top: 40px;
+            font-size: 28px;
+            color: #c5a059;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="lang-container">
+    <select id="langSwitch" class="lang-selector" onchange="changeLanguage(this.value)">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+    </select>
+</div>
+
+<div class="menu-container">
     <div class="header">
         <h1>Tane</h1>
         <p>Restaurant</p>
     </div>
 
-    <h2>YİYECEKLER & TATLILAR</h2>
+    <!-- YİYECEKLER & TATLILAR -->
+    <div id="cat-food" class="section-title">YİYECEKLER & TATLILAR</div>
     
-    <div class="item">
-        <span class="item-name">Günün Çorbası</span>
-        <span class="price">170 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Kuru Fasülye</span>
-            <span class="item-sub">(tereyağlı)</span>
+    <!-- 1. Günün Çorbası -->
+    <div class="menu-item">
+        <img src="corba.jpg" alt="Günün Çorbası" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1547592166-23ac45744acd?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Günün Çorbası" data-en="Soup of the Day">Günün Çorbası</span>
+                <span class="item-price">170 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Taze günlük çorba" data-en="Fresh daily soup">Taze günlük çorba</div>
         </div>
-        <span class="price">390 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Pilav</span>
-            <span class="item-sub">(Pirinç&Bulgur)</span>
-        </div>
-        <span class="price">170 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Pilav & Kavurma</span>
-        <span class="price">550 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Tane Özel Tabağı</span>
-            <span class="item-sub">(Kuru&Pilav&Kavurma)</span>
-        </div>
-        <span class="price">720 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Kavurma 100 gr</span>
-            <span class="item-sub">(güveçte tereyağlı)</span>
-        </div>
-        <span class="price">550 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Kavurma 150 gr</span>
-            <span class="item-sub">(güveçte tereyağlı)</span>
-        </div>
-        <span class="price">740 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Tane Beğendi</span>
-        <span class="price">550 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Etli Yaprak Sarma</span>
-            <span class="item-sub">(Yoğurt ile)</span>
-        </div>
-        <span class="price">550 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Zeytinyağlı Yaprak Sarma</span>
-        <span class="price">450 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Patates Salatası</span>
-        <span class="price">280 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Havuç Tarator</span>
-        <span class="price">280 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Fırın Sütlaç</span>
-        <span class="price">250 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Fırın Sütlaç Fındıklı</span>
-        <span class="price">300 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Magnolia</span>
-            <span class="item-sub">(Çilekli Muzlu Oreolu)</span>
-        </div>
-        <span class="price">300 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Cacık</span>
-        <span class="price">170 TL</span>
-    </div>
-    <div class="item">
-        <div>
-            <span class="item-name">Yoğurt</span>
-            <span class="item-sub">(Tava)</span>
-        </div>
-        <span class="price">170 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Karışık Turşu</span>
-        <span class="price">190 TL</span>
     </div>
 
-    <h2>İÇECEKLER</h2>
-
-    <div class="item">
-        <span class="item-name">Kola</span>
-        <span class="price">125 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Ayran</span>
-        <span class="price">100 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Soda</span>
-        <span class="price">125 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Türk Kahvesi</span>
-        <span class="price">150 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Nescafe</span>
-        <span class="price">125 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Bitki Çayı</span>
-        <span class="price">100 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Çay</span>
-        <span class="price">100 TL</span>
-    </div>
-    <div class="item">
-        <span class="item-name">Su</span>
-        <span class="price">70 TL</span>
+    <!-- 2. Kuru Fasülye -->
+    <div class="menu-item">
+        <img src="kuru.jpg" alt="Kuru Fasülye" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Kuru Fasülye" data-en="Baked Beans">Kuru Fasülye</span>
+                <span class="item-price">390 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Tereyağlı geleneksel lezzet" data-en="Traditional style with butter">Tereyağlı geleneksel lezzet</div>
+        </div>
     </div>
 
-    <div class="logo-symbol">豆</div>
+    <!-- 3. Pilav -->
+    <div class="menu-item">
+        <img src="pilav.jpg" alt="Pilav" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1516684732162-798a0062be99?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Pilav" data-en="Rice">Pilav</span>
+                <span class="item-price">170 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Pirinç veya Bulgur" data-en="Rice or Bulgur">Pirinç veya Bulgur</div>
+        </div>
+    </div>
+
+    <!-- 4. Pilav & Kavurma -->
+    <div class="menu-item">
+        <img src="pilavkavurma.jpg" alt="Pilav & Kavurma" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Pilav & Kavurma" data-en="Rice & Roasted Meat">Pilav & Kavurma</span>
+                <span class="item-price">550 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Özel kavurma ve tereyağlı pilav" data-en="Special roasted meat with rice">Özel kavurma ve tereyağlı pilav</div>
+        </div>
+    </div>
+
+    <!-- 5. Tane Özel Tabağı -->
+    <div class="menu-item">
+        <img src="ozeltabak.jpg" alt="Tane Özel Tabağı" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Tane Özel Tabağı" data-en="Tane Special Plate">Tane Özel Tabağı</span>
+                <span class="item-price">720 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Kuru Fasülye & Pilav & Kavurma" data-en="Beans, Rice & Roasted Meat combo">Kuru Fasülye & Pilav & Kavurma</div>
+        </div>
+    </div>
+
+    <!-- 6. Kavurma 100 gr -->
+    <div class="menu-item">
+        <img src="kavurma100.jpg" alt="Kavurma 100 gr" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Kavurma (100 gr)" data-en="Roasted Meat (100 gr)">Kavurma (100 gr)</span>
+                <span class="item-price">550 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Güveçte tereyağlı" data-en="In earthen pot with butter">Güveçte tereyağlı</div>
+        </div>
+    </div>
+
+    <!-- 7. Kavurma 150 gr -->
+    <div class="menu-item">
+        <img src="kavurma150.jpg" alt="Kavurma 150 gr" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Kavurma (150 gr)" data-en="Roasted Meat (150 gr)">Kavurma (150 gr)</span>
+                <span class="item-price">740 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Güveçte tereyağlı porsiyon" data-en="Large portion in earthen pot">Güveçte tereyağlı porsiyon</div>
+        </div>
+    </div>
+
+    <!-- 8. Tane Beğendi -->
+    <div class="menu-item">
+        <img src="begendi.jpg" alt="Tane Beğendi" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1543339308-43e59d6b73a6?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Tane Beğendi" data-en="Tane Beğendi">Tane Beğendi</span>
+                <span class="item-price">550 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Köz patlıcan yatağında et" data-en="Meat on smoked eggplant puree">Köz patlıcan yatağında et</div>
+        </div>
+    </div>
+
+    <!-- 9. Etli Yaprak Sarma -->
+    <div class="menu-item">
+        <img src="sarma.jpg" alt="Etli Yaprak Sarma" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Etli Yaprak Sarma" data-en="Stuffed Grape Leaves with Meat">Etli Yaprak Sarma</span>
+                <span class="item-price">550 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Özel yoğurt eşliğinde" data-en="Served with yogurt">Özel yoğurt eşliğinde</div>
+        </div>
+    </div>
+
+    <!-- 10. Zeytinyağlı Yaprak Sarma -->
+    <div class="menu-item">
+        <img src="zeytinyaglisarma.jpg" alt="Zeytinyağlı Yaprak Sarma" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Zeytinyağlı Yaprak Sarma" data-en="Olive Oil Stuffed Grape Leaves">Zeytinyağlı Yaprak Sarma</span>
+                <span class="item-price">450 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Geleneksel zeytinyağlı tarif" data-en="Traditional olive oil recipe">Geleneksel zeytinyağlı tarif</div>
+        </div>
+    </div>
+
+    <!-- 11. Patates Salatası -->
+    <div class="menu-item">
+        <img src="patates.jpg" alt="Patates Salatası" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Patates Salatası" data-en="Potato Salad">Patates Salatası</span>
+                <span class="item-price">280 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Ev yapımı taze patates salatası" data-en="Homemade fresh potato salad">Ev yapımı taze patates salatası</div>
+        </div>
+    </div>
+
+    <!-- 12. Havuç Tarator -->
+    <div class="menu-item">
+        <img src="havuc.jpg" alt="Havuç Tarator" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Havuç Tarator" data-en="Carrot Tarator">Havuç Tarator</span>
+                <span class="item-price">280 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Süzme yoğurtlu ve sarımsaklı havuç" data-en="Garlic yogurt carrot dip">Süzme yoğurtlu ve sarımsaklı havuç</div>
+        </div>
+    </div>
+
+    <!-- 13. Fırın Sütlaç -->
+    <div class="menu-item">
+        <img src="sutlac.jpg" alt="Fırın Sütlaç" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1488477181946-6428a0291777?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Fırın Sütlaç" data-en="Baked Rice Pudding">Fırın Sütlaç</span>
+                <span class="item-price">250 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Geleneksel fırınlanmış sütlaç" data-en="Traditional baked rice pudding">Geleneksel fırınlanmış sütlaç</div>
+        </div>
+    </div>
+
+    <!-- 14. Fırın Sütlaç Fındıklı -->
+    <div class="menu-item">
+        <img src="sutlacfindik.jpg" alt="Fırın Sütlaç Fındıklı" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Fırın Sütlaç (Fındıklı)" data-en="Baked Rice Pudding with Hazelnut">Fırın Sütlaç (Fındıklı)</span>
+                <span class="item-price">300 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Bol fındık parçacıklı" data-en="Topped with roasted hazelnuts">Bol fındık parçacıklı</div>
+        </div>
+    </div>
+
+    <!-- 15. Magnolia -->
+    <div class="menu-item">
+        <img src="magnolia.jpg" alt="Magnolia" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Magnolia" data-en="Magnolia Pudding">Magnolia</span>
+                <span class="item-price">300 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Çilekli, Muzlu ve Oreolu" data-en="Strawberry, Banana & Oreo">Çilekli, Muzlu ve Oreolu</div>
+        </div>
+    </div>
+
+    <!-- 16. Cacık -->
+    <div class="menu-item">
+        <img src="cacik.jpg" alt="Cacık" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Cacık" data-en="Cacik (Tzatziki)">Cacık</span>
+                <span class="item-price">170 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Ferahlatıcı yoğurtlu salatalık" data-en="Refreshing yogurt cucumber dip">Ferahlatıcı yoğurtlu salatalık</div>
+        </div>
+    </div>
+
+    <!-- 17. Yoğurt -->
+    <div class="menu-item">
+        <img src="yogurt.jpg" alt="Yoğurt" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1488477181946-6428a0291777?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Yoğurt (Tava)" data-en="Yogurt (Pan)">Yoğurt (Tava)</span>
+                <span class="item-price">170 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Geleneksel tava yoğurdu" data-en="Traditional pan yogurt">Geleneksel tava yoğurdu</div>
+        </div>
+    </div>
+
+    <!-- 18. Karışık Turşu -->
+    <div class="menu-item">
+        <img src="tursu.jpg" alt="Karışık Turşu" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1540420773420-3366772f4999?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Karışık Turşu" data-en="Mixed Pickles">Karışık Turşu</span>
+                <span class="item-price">190 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Ev yapımı karışık turşu" data-en="Homemade mixed pickled vegetables">Ev yapımı karışık turşu</div>
+        </div>
+    </div>
+
+
+    <!-- İÇECEKLER -->
+    <div id="cat-drink" class="section-title">İÇECEKLER</div>
+
+    <!-- 19. Kola -->
+    <div class="menu-item">
+        <img src="kola.jpg" alt="Kola" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Kola" data-en="Coke">Kola</span>
+                <span class="item-price">125 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Soğuk servis edilir" data-en="Served chilled">Soğuk servis edilir</div>
+        </div>
+    </div>
+
+    <!-- 20. Ayran -->
+    <div class="menu-item">
+        <img src="ayran.jpg" alt="Ayran" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Ayran" data-en="Ayran">Ayran</span>
+                <span class="item-price">100 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Köpüklü yayık ayranı" data-en="Traditional foamy yogurt drink">Köpüklü yayık ayranı</div>
+        </div>
+    </div>
+
+    <!-- 21. Soda -->
+    <div class="menu-item">
+        <img src="soda.jpg" alt="Soda" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Soda" data-en="Sparkling Water">Soda</span>
+                <span class="item-price">125 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Maden suyu" data-en="Natural mineral water">Maden suyu</div>
+        </div>
+    </div>
+
+    <!-- 22. Türk Kahvesi -->
+    <div class="menu-item">
+        <img src="turkkahvesi.jpg" alt="Türk Kahvesi" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Türk Kahvesi" data-en="Turkish Coffee">Türk Kahvesi</span>
+                <span class="item-price">150 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Geleneksel köpüklü kahve" data-en="Traditional brewed coffee">Geleneksel köpüklü kahve</div>
+        </div>
+    </div>
+
+    <!-- 23. Nescafe -->
+    <div class="menu-item">
+        <img src="nescafe.jpg" alt="Nescafe" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Nescafe" data-en="Nescafe">Nescafe</span>
+                <span class="item-price">125 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Sıcak çözünebilir kahve" data-en="Hot instant coffee">Sıcak çözünebilir kahve</div>
+        </div>
+    </div>
+
+    <!-- 24. Bitki Çayı -->
+    <div class="menu-item">
+        <img src="bitkicayi.jpg" alt="Bitki Çayı" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Bitki Çayı" data-en="Herbal Tea">Bitki Çayı</span>
+                <span class="item-price">100 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Özenle seçilmiş bitki çayları" data-en="Selection of herbal teas">Özenle seçilmiş bitki çayları</div>
+        </div>
+    </div>
+
+    <!-- 25. Çay -->
+    <div class="menu-item">
+        <img src="cay.jpg" alt="Çay" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Çay" data-en="Tea">Çay</span>
+                <span class="item-price">100 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Demli Türk çayı" data-en="Traditional brewed Turkish tea">Demli Türk çayı</div>
+        </div>
+    </div>
+
+    <!-- 26. Su -->
+    <div class="menu-item">
+        <img src="su.jpg" alt="Su" class="item-image" onerror="this.src='https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=150'">
+        <div class="item-details">
+            <div class="item-row">
+                <span class="item-name" data-tr="Su" data-en="Water">Su</span>
+                <span class="item-price">70 TL</span>
+            </div>
+            <div class="item-desc" data-tr="Küçük şişe su" data-en="Bottled water">Küçük şişe su</div>
+        </div>
+    </div>
+
+    <div class="footer-logo">豆</div>
 </div>
+
+<script>
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.getElementById('langSwitch').value = lang;
+        
+        document.getElementById('cat-food').innerText = lang === 'en' ? 'FOOD & DESSERTS' : 'YİYECEKLER & TATLILAR';
+        document.getElementById('cat-drink').innerText = lang === 'en' ? 'BEVERAGES' : 'İÇECEKLER';
+
+        const elements = document.querySelectorAll('[data-tr]');
+        elements.forEach(el => {
+            el.innerText = el.getAttribute(`data-${lang}`);
+        });
+
+        localStorage.setItem('preferred_lang', lang);
+    }
+
+    function changeLanguage(lang) {
+        setLanguage(lang);
+    }
+
+    window.onload = function() {
+        let savedLang = localStorage.getItem('preferred_lang');
+        if (!savedLang) {
+            let browserLang = navigator.language || navigator.userLanguage;
+            savedLang = browserLang.startsWith('tr') ? 'tr' : 'en';
+        }
+        setLanguage(savedLang);
+    };
+</script>
 
 </body>
 </html>
